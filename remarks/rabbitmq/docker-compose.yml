@@ -1,0 +1,22 @@
+version: "3.1"
+services:
+  rabbitmqMy:
+    container_name: rabbitmqMy
+    image: cyrilix/rabbitmq-mqtt
+    ports:
+      - 5672:5672
+      - 15672:15672
+      - 15675:15675
+      - 1883:1883
+      - 4369:4369
+      - 5671:5671
+      - 8883:8883
+      - 25672:25672
+    volumes:
+      - /docker_changsha/rabbitmq/data:/var/lib/rabbitmq
+    hostname: 'myRabbit'
+    environment:
+      RABBITMQ_DEFAULT_VHOST: my_vhost
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+#    network_mode: "host"

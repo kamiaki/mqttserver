@@ -1,0 +1,27 @@
+docker exec -it rabbitmqMy /bin/bash
+rabbitmq-plugins enable rabbitmq_mqtt
+rabbitmq-plugins enable rabbitmq_web_mqtt
+rabbitmq-plugins list
+
+用户
+新增
+rabbitmqctl add_user admin1 admin1
+查看所有
+rabbitmqctl list_users
+设置权限
+rabbitmqctl set_user_tags admin1 administrator
+rabbitmqctl set_user_tags  username tag1 tag2 ...
+修改密码
+rabbitmqctl change_password admin1 admin1
+删除
+rabbitmqctl delete_user username
+
+
+(1) 设置用户权限
+rabbitmqctl  set_permissions  -p  VHostPath  User  ConfP  WriteP  ReadP
+(2) 查看(指定hostpath)所有用户的权限信息
+rabbitmqctl  list_permissions  [-p  VHostPath]
+(3) 查看指定用户的权限信息
+rabbitmqctl  list_user_permissions  User
+(4)  清除用户的权限信息
+rabbitmqctl  clear_permissions  [-p VHostPath]  User
