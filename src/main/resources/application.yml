@@ -1,0 +1,36 @@
+server:
+  port: 18763  #服务的端口号 如果启动好几个服务集群，要修改成不同的
+spring:
+  #rabbitmq
+  rabbitmq:
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: my_vhost
+    host: 192.168.80.128
+    listener:
+      simple:
+        ## auto表示自动完成这次消费，manual表示需要手动告知完成消费
+        acknowledge-mode: auto
+        ## listener开几个线程处理数据
+        concurrency: 4
+        ## linstener 最大开几个线程
+        max-concurrency: 12
+        ## 一次拿几条数据
+        prefetch: 10
+        # 开启重试，重试5次 间隔1秒
+        retry:
+          # 开启消费者(程序出现异常)重试机制，默认开启并一直重试
+          enabled: true
+          # 最大重试次数
+          max-attempts: 5
+          # 重试间隔时间(毫秒)
+          initial-interval: 1000
+        # 是否进入死信队列 true是 false不是
+        default-requeue-rejected: true
+#mqtt
+mqtt:
+  host: 192.168.80.128
+  username: admin
+  pwd: admin
+  completionTimeout: 30000
