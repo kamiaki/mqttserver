@@ -6,8 +6,6 @@ import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Headers;
@@ -40,7 +38,7 @@ public class MessageReceiver {
             msg.setPayload(str.getBytes());//设置消息内容
             msg.setQos(0);//设置消息发送质量，可为0,1,2.
             msg.setRetained(false);//服务器是否保存最后一条消息，若保存，client再次上线时，将再次受到上次发送的最后一条消息。
-//            mqttClient.publish(MqttConfig.topic, msg);//设置消息的topic，并发送
+            mqttClient.publish(MqttConfig.topic, msg);//设置消息的topic，并发送
             //告诉RabbitMQ我已经签收了
         } catch (Exception e) {
             e.printStackTrace();

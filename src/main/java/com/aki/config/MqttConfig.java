@@ -20,13 +20,13 @@ public class MqttConfig {
     @Value("${mqtt.host}")
     private String mqttHost;
 
-    @Value("${mqtt.username:}")
+    @Value("${mqtt.username}")
     private String mqttUserName;
 
-    @Value("${mqtt.pwd:}")
+    @Value("${mqtt.pwd}")
     private String mqttPwd;
 
-    @Value("${mqtt.completionTimeout:}")
+    @Value("${mqtt.completionTimeout}")
     private Integer completionTimeout;
 
     /**
@@ -47,7 +47,7 @@ public class MqttConfig {
         //2.创建mqtt客户端
         MqttClient client = null;
         try {
-            client = new MqttClient("tcp://"+mqttHost, "alarmConsumer"+ UUID.randomUUID());
+            client = new MqttClient("tcp://"+mqttHost, "TESTXXXXXXX"+ UUID.randomUUID());
             client.connect(mOptions);//连接broker
             client.setCallback(mqttCallback);//连接broker
         } catch (MqttException e) {
